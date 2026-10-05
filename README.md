@@ -10,6 +10,8 @@
 
 **Sector:** non-profit · **Role:** contributor (~35% ownership, team of 2 DS) · **Stack:** Python, scikit-learn, GCP (BigQuery) · **Status:** validated, not advanced to production (DS recommendation, accepted by client)
 
+*Writeup prepared October 2026; the implementation is client property.*
+
 The client owns the exact business metrics. Performance numbers below are
 expressed as directional patterns or small ranges. The population scoping
 decisions, the reasons we recommended against production, and the operational
