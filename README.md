@@ -46,7 +46,7 @@ highest probability of making a second gift if contacted?
 
 The expected deliverable was a ranked list of one-time donors, scored by their
 predicted probability of a second donation, used by the marketing team to
-prioritise outreach within their weekly campaign capacity.
+prioritize outreach within their weekly campaign capacity.
 
 The underlying assumption at the start of the project was that a ranking model
 would let the team concentrate the fixed campaign budget on the segment with the
@@ -63,7 +63,7 @@ donors (scheduled monthly givers).
 
 Recurring donors showed a second-gift rate well above the one-time donor
 population. On the surface this looked like a positive signal. In practice it
-was the opposite. The high rate was mechanical, not behavioural. Recurring
+was the opposite. The high rate was mechanical, not behavioral. Recurring
 donors had committed to a monthly pledge at the time of their first donation,
 funded in most cases by an automated monthly charge, and the median donor
 stayed on the pledge for more than ten months. Their "second gift" was
@@ -81,7 +81,7 @@ commitment and whose next gift depends entirely on external stimulus.
 
 **One-time donors making a voluntary second gift** are responding to an external
 stimulus. A reengagement campaign, cause salience, a direct ask, a positive
-previous experience. The features that predict their behaviour are attributes of
+previous experience. The features that predict their behavior are attributes of
 the donor and attributes of the contact strategy.
 
 **Recurring donors fulfilling or breaking a prior monthly pledge** are
@@ -127,7 +127,7 @@ the client split into two parallel questions.
 - **Recurring donors.** Can we predict which active recurring donors are about to miss their next monthly gift, so retention outreach can be targeted? This became a separate churn project (see §6).
 
 Two populations, two problems, two models, two deliverables. The decision to
-split was the natural consequence of recognising
+split was the natural consequence of recognizing
 that two different causal stories were present in what had initially been
 scoped as one project.
 
@@ -146,7 +146,7 @@ made over a two-year period.
 
 The feature set was deliberately narrow because the available data was narrow.
 The client's donor system captured transactional and basic demographic
-attributes with a lot of missing data on demographics which made it impossible to use. Behavioural engagement data (email opens, campaign responses outside
+attributes with a lot of missing data on demographics which made it impossible to use. Behavioral engagement data (email opens, campaign responses outside
 of donation, cause-area affinity signals) was not available at the time of the
 project. Whether that limitation ended up being the binding constraint is what
 §5 is about.
@@ -215,15 +215,15 @@ A fixed probability threshold ("contact everyone above 0.40") has two problems
 that make it worse than useless at the go/no-go stage.
 
 First, the right threshold depends on campaign economics, not on the model's
-internal probability scale. The threshold that maximises ROI in a low-cost
-email campaign is different from the threshold that maximises ROI in a phone
+internal probability scale. The threshold that maximizes ROI in a low-cost
+email campaign is different from the threshold that maximizes ROI in a phone
 campaign for the same model, even though the model has not changed.
 
 Second, if the model is retrained or recalibrated, probabilities shift and the
 threshold loses its meaning. The threshold has to be recalibrated as well.
 
 Lift by percentile sidesteps both problems. Decile ranks are inherently
-self-normalising. The top decile is always the top 10% of the current ranked
+self-normalizing. The top decile is always the top 10% of the current ranked
 list, regardless of how the score distribution has shifted. And the economic
 threshold (which percentile is worth activating) is computed separately from
 the model, so it can be recalibrated when campaign costs or expected donation
@@ -256,7 +256,7 @@ Several variations of the model were tried. With and without
 included (as a diagnostic), on random splits and on time-based splits, and on
 cohorts of donors from different two-year windows. The ranking produced by the
 best version of each variant looked structurally similar. The top decile
-separated from the rest, and not by enough. No modelling choice shifted the
+separated from the rest, and not by enough. No modeling choice shifted the
 economics from "no" to "yes".
 
 The model was learning something real. It was just not learning enough.
@@ -267,10 +267,10 @@ The feature set in §3 captured what the donor had done at the point of the
 first donation (amount, channel, date, demographics). It did not capture what
 the donor had done since then. A one-time donor who had opened six campaign
 emails over the past year, clicked through on two, and spent time on the cause
-page is behaviourally different from one who had engaged with none of the above.
+page is behaviorally different from one who had engaged with none of the above.
 Both look identical in the feature set used.
 
-Adding behavioural engagement features (email open and click history, visit
+Adding behavioral engagement features (email open and click history, visit
 patterns, campaign exposure counts) is the standard next step for a propensity
 model of this kind. For the client, this data existed inside the marketing
 automation platform and was not integrated with the donor system at the time of
@@ -298,7 +298,7 @@ the deployment question, and would also delay the alternative work (the
 recurring donors branch, see §6) by months.
 
 The recommendation was. Do not productionize this model. Redirect the
-client-side investment toward integrating behavioural engagement data [AN IMPROVING DEMOGRAPHICS DATA] (which
+client-side investment toward integrating behavioral engagement data [AN IMPROVING DEMOGRAPHICS DATA] (which
 would make a future version viable) and move the second-population branch
 forward in parallel. The client accepted the recommendation.
 
@@ -309,7 +309,7 @@ infeasible in general. It was that this specific model, on this specific data,
 with this specific feature set, did not justify production at the time of the
 project. Three things could change that verdict in a future iteration.
 
-- **Better features.** Behavioural [AND DEMOGRAPHICS] engagement data would almost certainly produce a stronger ranking. The feature groups that typically carry signal in propensity models of this kind (recent interaction patterns, cause-area affinity, campaign exposure) were systematically absent here.
+- **Better features.** Behavioral [AND DEMOGRAPHICS] engagement data would almost certainly produce a stronger ranking. The feature groups that typically carry signal in propensity models of this kind (recent interaction patterns, cause-area affinity, campaign exposure) were systematically absent here.
 - **A lower-cost outreach channel.** The economics are a function of cost per contact. A sufficiently cheap channel (triggered email with no manual follow-up) could make the current lift pay even without new features.
 - **A different donation-side target.** The current label is "second gift of any size within the horizon". A model targeting a higher-value second gift, with different per-contact economics, is a different problem and would require re-scoping.
 
@@ -320,7 +320,7 @@ deploy was framed as "not this version" rather than "not this problem".
 
 The population excluded in §2 was addressed as a separate project. The two
 projects shared the client, the overall engagement, and parts of the data
-engineering pipeline. They did not share the modelling problem.
+engineering pipeline. They did not share the modeling problem.
 
 Recurring donors give at a near-monthly cadence. Churn is binary and clean. Did
 the next monthly gift arrive within the expected window, or not? Features that
@@ -331,7 +331,7 @@ economics than acquisition outreach, and the segmentation is driven by a
 combination of recency bands and model percentile within those bands.
 
 The churn project did reach production, with a monthly scoring cadence feeding
-a prioritised retention workflow.
+a prioritized retention workflow.
 
 Case study: [churn-donors-case-study](https://github.com/martinterzano/churn-donors-case-study).
 
@@ -363,7 +363,7 @@ Pipeline([
 Each stage is a `BaseEstimator` + `TransformerMixin` subclass with a plain
 `fit` / `transform` contract, which gives three things for free. `GridSearchCV`
 can search over any stage's hyperparameters without caring about the others.
-`joblib.dump` serialises the whole pipeline (including fitted state) in one
+`joblib.dump` serializes the whole pipeline (including fitted state) in one
 call. And `cross_val_score` runs end-to-end without data leakage, because
 `OutlierClipper` and `FeatureEngineer` fit on the training fold only and
 transform the validation fold without re-fitting.
@@ -375,10 +375,10 @@ different kind of state.
 
 | Module | What it owns | Why it is separate |
 |---|---|---|
-| `FeatureMapper` | Client-specific categorical mappings (payment method normalisation, engagement group taxonomy, campaign-name grouping) | Business taxonomy changes without the model changing. Keeping it in its own module makes "the client renamed a category" a one-file edit. |
-| `FeatureEngineer` | Pure derived features: logs, buckets, interactions, date-part extraction | Stateless by design. No `fit` state. Separable because the derived-features catalogue grows faster than the rest of the pipeline. |
+| `FeatureMapper` | Client-specific categorical mappings (payment method normalization, engagement group taxonomy, campaign-name grouping) | Business taxonomy changes without the model changing. Keeping it in its own module makes "the client renamed a category" a one-file edit. |
+| `FeatureEngineer` | Pure derived features: logs, buckets, interactions, date-part extraction | Stateless by design. No `fit` state. Separable because the derived-features catalog grows faster than the rest of the pipeline. |
 | `OutlierClipper` | Per-column quantile bounds, fitted on training data | Has fit state (`bounds_`), applies at transform time with `clip`. Separated so the clipping policy is auditable without opening the preprocessor. |
-| `build_preprocessor` | Numeric: `IterativeImputer` + `StandardScaler`. Categorical: `SimpleImputer` + `OneHotEncoder(handle_unknown='ignore')`. | A function returning a `ColumnTransformer`, not a module. The behaviour is standard sklearn; wrapping it in a builder keeps the main `pipeline.py` thin. |
+| `build_preprocessor` | Numeric: `IterativeImputer` + `StandardScaler`. Categorical: `SimpleImputer` + `OneHotEncoder(handle_unknown='ignore')`. | A function returning a `ColumnTransformer`, not a module. The behavior is standard sklearn; wrapping it in a builder keeps the main `pipeline.py` thin. |
 | `get_model` | A single switch returning an unfitted classifier by name, with `class_weight="balanced"` wired in | Lets the experiment grid loop over `['logistic', 'random_forest', 'xgboost']` without touching the pipeline composition. The imbalance treatment is defined at this boundary, not scattered through the training notebook. |
 
 The practical consequence is that a new experiment is a function call, not an
@@ -408,7 +408,7 @@ the walk-forward validation loop.
 - The experiment logger pattern was expanded in the churn project into a two-table structure (runs + folds) to accommodate the walk-forward validation loop, with the propensity-era single-run logger as the direct ancestor.
 - When new DS joined the engagement, there was documented infrastructure to extend. Reading the `pipeline.py` composition answered "where does X happen?" in one place.
 
-The code artefacts outlived the production decision. The model this case
+The code artifacts outlived the production decision. The model this case
 study describes did not reach production (§5). The pipeline it was built on
 is the thing that is still in use.
 
@@ -417,7 +417,7 @@ is the thing that is still in use.
 ### What is deliberately not published
 
 - **Client identity, campaign-level metrics, exact feature list, exact feature-importance ranking.** Client property.
-- **Model artefacts, training SQL, scoring SQL.** Client property.
+- **Model artifacts, training SQL, scoring SQL.** Client property.
 - **Hyperparameter grids, exact validation split dates, exact per-decile numbers.** Client property. The decisions described in §4 and §5 are based on these numbers; the shape and direction are described, the raw values are not.
 
 ### What is in this repo
@@ -437,12 +437,12 @@ client logic.
 
 ## 9. What this case study is meant to show
 
-- **Population scoping as a domain decision, not a data decision.** The most important work in this project happened before a single model was trained. Recognising that two different causal stories were present in the data, and that the right response was two models for two populations, not one model with an adjustment flag.
+- **Population scoping as a domain decision, not a data decision.** The most important work in this project happened before a single model was trained. Recognizing that two different causal stories were present in the data, and that the right response was two models for two populations, not one model with an adjustment flag.
 - **Two distinct generative processes warrant two distinct models.** Mixing one-time donors and recurring donors into a single training set would have produced a system answering two questions at once. The resulting ranking would not have been operationally actionable, because the retention and acquisition workflows live in different teams with different actions.
 - **Explicit exclusion over feature-based adjustment.** When a flag variable is required to handle a subpopulation correctly, the implicit cost is a dependency on labeling quality in production. Explicit exclusion removes that dependency at the cost of scope. A trade-off worth making when the excluded segment falls outside the campaign's intended audience.
 - **Lift by percentile as a go/no-go filter, not just a cutoff tool.** The decile analysis has two outputs that look like one. "Where to cut" is the obvious one. "Whether to cut at all" is the one that matters when the lift is marginal. Collapsing both into a single number ("the recommended threshold is X") hides the second output and makes the no-go verdict harder to see.
 - **Recommending against production as a senior deliverable.** A validated model that does not justify its operational cost is a result, not a failure. The recommendation to not deploy was documented alongside the three paths that would change the verdict (better features, cheaper channel, higher-value target), so the decision was framed as "not this version" rather than "not this problem".
-- **A scoping decision can bifurcate an engagement into two projects with different outcomes.** This is not a pivot. It is the natural consequence of recognising that what was scoped as one problem is really two. One of the two branches can reach production and the other can be shelved, and both outcomes are coherent with the original scoping decision.
+- **A scoping decision can bifurcate an engagement into two projects with different outcomes.** This is not a pivot. It is the natural consequence of recognizing that what was scoped as one problem is really two. One of the two branches can reach production and the other can be shelved, and both outcomes are coherent with the original scoping decision.
 - **Infrastructure built once, reused across projects.** The modular sklearn Pipeline described in §7 was built as reusable scaffolding from the first iteration of this project. When the recurring donors branch started, the pipeline was already there and the second project moved from blank slate to full validation grid in days, not weeks. The model this case study describes did not reach production, and the pipeline it was built on is the thing that is still in use.
 
 ---
